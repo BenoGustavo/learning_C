@@ -1,17 +1,17 @@
 # Project: hospital_crud
 # Makefile created by Dev-C++ 5.11
 
-CPP      = g++.exe
-CC       = gcc.exe
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
 OBJ      = crud_with_mysql.o
 LINKOBJ  = crud_with_mysql.o
-LIBS     = -L"C:/Users/Cesusc/Desktop/Dev-Cpp/MinGW64/lib" -L"C:/Users/Cesusc/Desktop/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -L"C:/Program Files/MySQL/MySQL Server 8.0/lib" -lmysql
-INCS     = -I"C:/Users/Cesusc/Desktop/Dev-Cpp/MinGW64/include" -I"C:/Users/Cesusc/Desktop/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/Cesusc/Desktop/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files/MySQL/MySQL Server 8.0/include" -I"C:/Program Files/MySQL/MySQL Server 8.0/include/mysql"
-CXXINCS  = -I"C:/Users/Cesusc/Desktop/Dev-Cpp/MinGW64/include" -I"C:/Users/Cesusc/Desktop/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/Cesusc/Desktop/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Users/Cesusc/Desktop/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"C:/Program Files/MySQL/MySQL Server 8.0/include" -I"C:/Program Files/MySQL/MySQL Server 8.0/include/mysql"
+LIBS     = -L"D:/Programação/DEV C++/Dev-Cpp/MinGW64/lib" -L"D:/Programação/DEV C++/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -L"C:/Program Files/MySQL/MySQL Server 8.0/lib" -lmysql -g3
+INCS     = -I"D:/Programação/DEV C++/Dev-Cpp/MinGW64/include" -I"D:/Programação/DEV C++/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Programação/DEV C++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files/MySQL/MySQL Server 8.0/include" -I"C:/Program Files/MySQL/MySQL Server 8.0/include/mysql"
+CXXINCS  = -I"D:/Programação/DEV C++/Dev-Cpp/MinGW64/include" -I"D:/Programação/DEV C++/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Programação/DEV C++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Programação/DEV C++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"C:/Program Files/MySQL/MySQL Server 8.0/include" -I"C:/Program Files/MySQL/MySQL Server 8.0/include/mysql"
 BIN      = hospital_crud.exe
-CXXFLAGS = $(CXXINCS) -std=c++11
-CFLAGS   = $(INCS) -std=c++11
+CXXFLAGS = $(CXXINCS) -std=c++11 -g3
+CFLAGS   = $(INCS) -std=c++11 -g3
 RM       = rm.exe -f
 
 .PHONY: all all-before all-after clean clean-custom

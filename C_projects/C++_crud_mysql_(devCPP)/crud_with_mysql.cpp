@@ -118,11 +118,29 @@ string selectQuery = "SELECT * FROM funcionario WHERE id_funcionario = '" + id_f
 }
 
 // Delete
-void deletar_funcionario(MYSQL* connection,string id_funcionario){
-	
-string deleteQuery = "DELETE FROM funcionario WHERE id_funcionario = '" + id_funcionario + "'";
+void deletar_funcionario(MYSQL* connection, string id_funcionario) {
+
+    string selectQuery = "SELECT id_endereco FROM funcionario WHERE id_funcionario = '" + id_funcionario + "'";
+    string deleteQuery = "DELETE FROM funcionario WHERE id_funcionario = '" + id_funcionario + "'";
+
     if (executeQuery(connection, deleteQuery)) {
         cout << "Record deleted successfully." << endl;
+    }
+
+    if (executeQuery(connection, selectQuery)) {
+        MYSQL_RES* result = mysql_store_result(connection);
+        MYSQL_ROW row = mysql_fetch_row(result);
+
+        if (row != nullptr) {
+            string id_endereco = row[6];
+            deleteQuery = "DELETE FROM endereco WHERE id_endereco = '" + id_endereco + "'";
+
+            if (executeQuery(connection, deleteQuery)) {
+                cout << "Record deleted successfully." << endl;
+            }
+        }
+
+        mysql_free_result(result);
     }
 }
 
@@ -158,9 +176,9 @@ int main() {
     cout << "Connected to the database." << endl << endl;
 	
 	//Funcionando 
-	createfuncionario(connection,"349.558.899-61","Gustavo","gustavo.gorges@faculdadecesusc.edu.br","48 32695585","rua Evaristo Guilherme Dos santos","Desenvolvedor","50000800","1234","vargem de fora");
+	//createfuncionario(connection,"349.558.899-61","Gustavo","gustavo.gorges@faculdadecesusc.edu.br","48 32695585","rua Evaristo Guilherme Dos santos","Desenvolvedor","50000800","1234","vargem de fora");
 	//ler_funcionario(connection,"1");
-	//deletar_funcionario(connection,"1");
+	deletar_funcionario(connection,"29");
 	
 	return 0;
 }
