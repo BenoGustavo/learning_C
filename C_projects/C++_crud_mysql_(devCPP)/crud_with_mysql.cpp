@@ -162,6 +162,19 @@ void readFuncionario(MYSQL* conn, int id) {
 void updateFuncionario(MYSQL* conn, int id, const char* newCPF, const char* newnome, const char* newemail, const char* newtelefone, const char* newlogradouro, const char* newfuncao, const char* newcep, const char* newnumero, const char* newbairro) {
 	MYSQL_STMT* stmt = mysql_stmt_init(conn);
 	
+	//Selecting adress id
+    
+    char query[100];
+    snprintf(query, sizeof(query), "SELECT * FROM funcionario WHERE id_funcionario = %d", id);
+
+    MYSQL_RES* res = executeQuery(conn, query);
+	
+    MYSQL_ROW row;
+    row = mysql_fetch_row(res);
+    
+    int id_address = atoi(row[6]);
+    mysql_free_result(res);
+	
 	//Updating funcionario
     const char* update_query = "UPDATE funcionario SET CPF = ?, nome = ?, email = ?, telefone = ?, funcao = ? WHERE id_funcionario = ?";
     mysql_stmt_prepare(stmt, update_query, strlen(update_query));
@@ -194,28 +207,8 @@ void updateFuncionario(MYSQL* conn, int id, const char* newCPF, const char* newn
     
     mysql_stmt_bind_param(stmt, bind);
     mysql_stmt_execute(stmt);
-    
-    mysql_stmt_close(stmt);
-    
-	//Selecting adress id
-    stmt = mysql_stmt_init(conn);
-    
-    char query[100];
-    snprintf(query, sizeof(query), "SELECT * FROM funcionario WHERE id_funcionario = %d", id);
-
-    MYSQL_RES* res = executeQuery(conn, query);
-	
-	mysql_stmt_close(stmt);
-	
-    MYSQL_ROW row;
-    row = mysql_fetch_row(res);
-    
-    int id_address = atoi(row[6]);
-    mysql_free_result(res);
         
 	//Updating adress
-	
-	stmt = mysql_stmt_init(conn);
 	
     const char* update_query_adress = "UPDATE endereco SET logradouro = ?, cep = ?, numero = ?, bairro = ? WHERE id_endereco = ?";
     mysql_stmt_prepare(stmt, update_query_adress, strlen(update_query_adress));
@@ -295,10 +288,10 @@ int main() {
     //createFuncionario(conn, "1234567890", "John Doe","john@gmail.com","2342342","logra","dev","242342422","45","vargem");
 
     // Read a funcionario by ID (working)
-    //readFuncionario(conn, 36);
+    //readFuncionario(conn, 37);
 
     // Update a funcionario (Update personal funcionario info but not the adress)
-    //updateFuncionario(conn, 25,"555555","Gustavo","gmail.com","326695585","logrando","dev","3333333","130","vargem");
+    updateFuncionario(conn,31 ,"555555","Gustavo","gmail.com","326695585","ze da manga","dev","3333333","130","aaaaaaaaa");
     
     //Del funcionnario (Working)
 	//deleteFuncionario(conn,36);
