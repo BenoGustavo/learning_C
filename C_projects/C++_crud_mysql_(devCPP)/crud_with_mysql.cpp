@@ -298,7 +298,7 @@ int main() {
     //readFuncionario(conn, 36);
 
     // Update a funcionario (Update personal funcionario info but not the adress)
-    updateFuncionario(conn, 25,"555555","Gustavo","gmail.com","326695585","logrando","dev","3333333","130","vargem");
+    //updateFuncionario(conn, 25,"555555","Gustavo","gmail.com","326695585","logrando","dev","3333333","130","vargem");
     
     //Del funcionnario (Working)
 	//deleteFuncionario(conn,36);
